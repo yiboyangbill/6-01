@@ -1,0 +1,42 @@
+display.newText( "Answer", display.contentCenterX, display.contentCenterY -200, native.systemFont, 50 )
+
+local answerTextField = native.newTextField( display.contentCenterX, display.contentCenterY + -120, 250, 50 )
+
+answerTextField.id = "answerTextField"
+
+display.newText( "pick a number from 1 to 6", display.contentCenterX, display.contentCenterY, native.systemFont, 20 )
+
+local numberTextField = native.newTextField( display.contentCenterX, display.contentCenterY + 50, 300, 50 )
+numberTextField.id = "numberTextField"
+numberTextField.inputType="number"
+
+local guessTextField = native.newTextField( display.contentCenterX, display.contentCenterY + 150, 300, 50 )
+guessTextField.id = "guessTextField"
+
+local image = display.newImageRect( "enterButton.png", 150, 75 )
+image.x = display.contentCenterX
+image.y = 185
+image.id = "enterButton"
+
+display.newText( "correct answer", display.contentCenterX, 340, native.systemFont, 25 )
+
+
+local function enterButtonTouch( event )
+
+	local numbertoguess = math.random( 1, 6 )
+    
+    local answerofnumber = tonumber(numberTextField.text)
+   
+    if numbertoguess == answerofnumber then
+
+      answerTextField.text = "Correct"
+
+    else answerTextField.text = "Incorrect"
+    
+    end  
+   
+    guessTextField.text = tostring(numbertoguess)
+
+end
+
+image:addEventListener( "touch", enterButtonTouch )
